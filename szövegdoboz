@@ -1,0 +1,14 @@
+library(glue)
+
+brand <- BrandList.box.2
+paste0(brand)
+
+html <- glue("
+<div style='text-align:center; font-size:16px'>
+<span style='color:#536b6f; font-style: Aptos'>Have</span>&nbsp;<span style='font-weight:bold; color:#536b6f; font-style: Aptos'>seen/heard of</span>&nbsp;<span style='font-weight:bold; color:#536b6f; font-style:Aptos'>{brand}'s</span> <span style='font-weight:bold; color:#536b6f; font-style: Aptos'> product</span>&nbsp;<span style= 'color:#536b6f; font-style: Aptos'>before</span>
+
+</div>
+")
+
+# Az interpolált HTML kódot karakterlánccá alakítja, majd megjeleníti a Metro dobozban
+rhtmlMetro::Box(as.character(html), text.as.html = TRUE)
