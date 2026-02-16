@@ -1,0 +1,22 @@
+comboarray = c(Gender_Box, 
+               Age_Box, 
+               PlayerType_Box,
+               Segment_Box,
+               PY_PM_Box,
+               Participation_by_game_box
+               )
+comboLength = length(comboarray)
+myString = ""
+if (length(comboarray) == 1){
+    myString = paste(myString,comboarray[1], sep = "")
+} else if (length(comboarray) > 1 && length(comboarray) < 50) {
+    myString = paste(myString,comboarray[1])
+    for (i in 2:comboLength){
+        myString = paste(myString,", ",comboarray[i], sep = "")
+    }
+} else {
+    myString = "No selected filter"
+}
+myString
+# "Selected filter(s)" 
+# myString
