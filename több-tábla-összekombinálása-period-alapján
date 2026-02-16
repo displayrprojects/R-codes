@@ -1,0 +1,38 @@
+library(abind)
+tryCatch(
+    {
+if (Period_Box == "Fiscal Year"){
+    table <- table.Q101.Are.you.aware.that.the.Massachusetts.Lottery.promotes.responsible.play.by.providing.Problem.Gambling.Helpline.resources.such.as.the.helpline.phone.number.800.327.5050.in.its.advertising.by.FiscalYear[1,, drop=FALSE]
+    table2 <- table.Q100.Are.you.aware.of.the.resources.in.Massachusetts.that.are.available.to.you.or.someone.you.know.if.help.is.needed.with.a.gambling.problem.by.FiscalYear[1,, drop=FALSE]
+    table3 <- table.QA1.The.Massachusetts.Lottery.has.many.forms.of.advertising.and.promotion.Do.you.recall.seeing.or.hearing.any.advertising.for.the.Massachusetts.Lottery.in.recent.months.That.includes.on.TV.radio.podcasts.online.billboards.and.any.other.form.of.adve.by.FiscalYear[1,, drop=FALSE]
+} else if (Period_Box == "Quarter"){
+    table <- table.Q101.Are.you.aware.that.the.Massachusetts.Lottery.promotes.responsible.play.by.providing.Problem.Gambling.Helpline.resources.such.as.the.helpline.phone.number.800.327.5050.in.its.advertising.by.Quarter[1,, drop=FALSE ]
+    table2 <- table.Q100.Are.you.aware.of.the.resources.in.Massachusetts.that.are.available.to.you.or.someone.you.know.if.help.is.needed.with.a.gambling.problem.by.Quarter[1,, drop=FALSE ]
+    table3 <- table.QA1.The.Massachusetts.Lottery.has.many.forms.of.advertising.and.promotion.Do.you.recall.seeing.or.hearing.any.advertising.for.the.Massachusetts.Lottery.in.recent.months.That.includes.on.TV.radio.podcasts.online.billboards.and.any.other.form.of.adve.by.Quarter[1,, drop=FALSE]
+} else if (Period_Box == "Month"){
+   table <- table.Q101.Are.you.aware.that.the.Massachusetts.Lottery.promotes.responsible.play.by.providing.Problem.Gambling.Helpline.resources.such.as.the.helpline.phone.number.800.327.5050.in.its.advertising.by.Months[1,, drop=FALSE ]
+   table2 <- table.Q100.Are.you.aware.of.the.resources.in.Massachusetts.that.are.available.to.you.or.someone.you.know.if.help.is.needed.with.a.gambling.problem.by.Months[1,, drop=FALSE ]
+   table3 <- table.QA1.The.Massachusetts.Lottery.has.many.forms.of.advertising.and.promotion.Do.you.recall.seeing.or.hearing.any.advertising.for.the.Massachusetts.Lottery.in.recent.months.That.includes.on.TV.radio.podcasts.online.billboards.and.any.other.form.of.adve.by.Months[1,, drop=FALSE ]
+} 
+finalTable <- abind(table, table2, table3, along = 1)
+rownames(finalTable) <- c("MA Lottery Promotes Responsible Play by providing resources", "General resources available for gambling problems", "General MA Lottery Ad Recall")
+# OHIOsig = flipAPI::QLoadData("OHIOsig.rds")
+# attach(OHIOsig())
+# tabla=table
+# basename="Column Sample Size"
+# table=PreviousPeriodSig(tabla,basename,30)
+# if (!is.null(finalTable) && ncol(finalTable) > 0) {
+#     # Vegyük a legutolsó 5 oszlopot, ha több van
+#     if (ncol(finalTable) > 5) {
+#         start_col <- ncol(finalTable) - 4
+#         table <- table[, start_col:ncol(table),, drop = FALSE]
+#     }
+#     else{
+#         finalTable
+#     }
+# }
+finalTable
+    },
+    error= function (e){
+        cat("No data\n") 
+    })
