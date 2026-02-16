@@ -1,0 +1,14 @@
+tryCatch({
+ if (Period_Box == "Fiscal Year") {
+  # Extract value from first row, column matching Timeperiod_Box.5
+  value <- table.Q69r.4[1, Timeperiod_Box.5, drop = TRUE]
+} else if (Period_Box == "Quarter") {
+  value <- table.Q69r.3[1, Timeperiod_Box.5, drop = TRUE]
+} else if (Period_Box == "Month") {
+  value <- table.Q69r.5[1, Timeperiod_Box.5, drop = TRUE]
+}
+result <- as.character(value)  # convert to string
+result
+}, error = function(e) {
+  cat("") 
+})
