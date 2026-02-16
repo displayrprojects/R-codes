@@ -1,0 +1,32 @@
+library(glue)       # Szöveg interpolációhoz, változók behelyettesítéséhez HTML-be
+library(rhtmlMetro)  # HTML tartalom megjelenítéséhez a Metro stílusú dobozban
+# Példa adat: átlagos árérzékelési érték a táblázatból (1-5 skálán)
+price <- table.X4.Private.Label.Price.perception.Average.by.CellQuota[, 1]
+# Kiszámolja a jelző (háromszög) vízszintes pozícióját százalékban (0-100%)
+# Az ár értékét a 1-5 tartományról arányosan térképezi 0 és 100 közé
+position <- ((price - 1) / 4) * 100
+# HTML tartalom generálása, amely tartalmaz egy színes skálát és a pozíció szerint mozgó háromszöget
+html <- glue("
+<div style='margin-bottom: 30px; font-family: sans-serif;'>
+  <div style='font-weight: 600; margin-bottom: 20px; font-style: Aptos; font-size: 25px; color:#536B6F '>PRICE</div>
+  <div style='position: relative; width: 300px; height: 11px; 
+              background: linear-gradient(to right, #98EAFF, #00A0C9, #006F8B);
+              border-radius: 8px;'>
+    <div style='width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 24px solid #004E62;
+      position: absolute;
+      left: {position}%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: left 0.5s ease;'></div>
+  </div>
+  <div style='display: flex; justify-content: space-between; width: 300px;
+              font-size: 12px; margin-top: 10px; color: #475569;'>
+    <span style='font-family:Aptos; font-size: 15px'>Lower vs. others</span><span></span><span></span><span></span><span style='font-family:Aptos; font-size: 15px'>Higher vs. others</span>
+  </div>
+</div>
+")
+# Az interpolált HTML kódot karakterlánccá alakítja, majd megjeleníti a Metro dobozban
