@@ -1,0 +1,70 @@
+if (is.null(calc.30)) {
+  html <- '<!DOCTYPE html>
+  <html>
+    <head>
+      <style>
+        html, body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+        }
+        .container {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #FFFFFF;
+          font-family: Arial, sans-serif;
+        }
+        p {
+          color: red;
+          font-weight: bold;
+          text-align: center;
+          margin: 0;
+          font-size:12px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <p>No data</p>
+      </div>
+    </body>
+  </html>'
+  rhtmlMetro::Box(html, text.as.html = TRUE)
+} else {
+  html <- '<!DOCTYPE html>
+  <html>
+    <head>
+      <style>
+        html, body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+        }
+        .container {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(255, 255, 255, 0);
+          font-family: Arial, sans-serif;
+        }
+        p {
+          color: #2DA6C1;
+          font-weight: bold;
+          text-align: center;
+          margin: 0;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <p></p>
+      </div>
+    </body>
+  </html>'
+  rhtmlMetro::Box(html, text.as.html = TRUE)
+}
