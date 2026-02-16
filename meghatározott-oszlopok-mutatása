@@ -1,0 +1,10 @@
+if (!is.null(finalTable) && ncol(finalTable) > 0) {
+    # Vegyük a legutolsó 5 oszlopot, ha több van
+   if (ncol(finalTable) > 5) {
+       start_col <- ncol(finalTable) - 4
+      table <- table[, start_col:ncol(table),, drop = FALSE]
+   }
+   else{
+        finalTable
+   }
+ }
